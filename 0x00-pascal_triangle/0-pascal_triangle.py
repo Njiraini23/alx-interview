@@ -14,12 +14,12 @@ def pascal_triangle(n):
         return [[1]]
 
     matrix = [[1], [1, 1]]
-    for k in range(1, n-1)
-    temp = [1, 1]
-    j = 1
-    for i in range(1, len(matrix[k])):
-        temp.insert(j, matrix[k][i] + matrix[k][i - 1])
-        j += 1
-        matrix.append(temp)
+    for k in range(1, n-1):
+        temp = [1, 1]
+        j = 1
+        for i in range(1, len(matrix[k])):
+            temp.insert(j, matrix[k][i] + matrix[k][i - 1])
+            j += 1
 
-        return matrix
+        matrix.append(temp)
+    return matrix
