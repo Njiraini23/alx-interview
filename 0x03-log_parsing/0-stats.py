@@ -1,6 +1,7 @@
-#!/usr/bin/env python3
-"""reads stdin line by line"""
-import sys
+#!/usr/bin/python3
+"""
+Log parsing
+"""
 
 import sys
 
