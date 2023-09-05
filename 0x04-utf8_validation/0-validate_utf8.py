@@ -12,13 +12,14 @@ def validUTF8(data):
 
     for num in data:
         """check the data through the integers in the list"""
+        byte = num & 0xFF
 
         if n_bytes == 0:
-            id byte >> 7 == 0b0:
+            if byte >> 7 == 0b0:
                 continue
             elif byte >> 5 == 0b110:
                 n_bytes = 1
-            elif byte >> 4 == ob1110:
+            elif byte >> 4 == 0b1110:
                 n_bytes = 2
             elif byte >> 3 == 0b11110:
                 n_bytes = 3
