@@ -1,12 +1,41 @@
 #!/usr/bin/node
 // This is the url we want to request data from 
-let request = "https://swapi-api.alx-tools.com/api/"
+const request = require('request');
+const API_URL request = "https://swapi-api.hbtn.io/api';
 
-// the function call to retrieve the data and display the page
-fetch(request.then(response) => {
-  return response.json();
-}).then((data) => {
-  let p = document.getElementById("text");
-  console.log(data)
-  p.innerHTML = JSON.stringify(data);
-})
+async function getCharacterNames (moveId) {
+  try {
+    request(`${API_URL}/films/${movieId}/`, (err, _, body) => {
+      if (err) {
+        console.error(err.message);
+	return;
+      }
+      const charactersURL = JSON.parse(body).characters;
+      const characterPromises = charactersURL.map(url) => {
+        return new Promise((resolve, reject)) => {
+          request(url, (promiseErr, __, charactersReqBody) => {
+	    if (promiseErr) {
+	      reject(promiseErr);
+	    } else {
+	      resolve(JSON.parse(charactersReqBody).name);
+	    }
+	  });
+	});
+      });
+
+promise.all(characterPromises)
+  .then((names) => console.log(names.join('\n')))
+  .catch((allErr) => console.error(allErr));
+    });
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+if (process.argv.length <= 2) {
+  console.error('Usage: node script.js <Movie_ID>');
+  process.exit(1);
+}
+
+const movieId = process.argv[2];
+getCharacterNames(movieId);
