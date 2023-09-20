@@ -1,5 +1,4 @@
 #!/usr/bin/node
-// This is the url we want to request data from 
 const request = require('request');
 
 const API_URL = 'https://swapi-api.hbtn.io/api';
@@ -9,24 +8,24 @@ async function getCharacterNames (movieId) {
     request(`${API_URL}/films/${movieId}/`, (err, _, body) => {
       if (err) {
         console.error(err.message);
-	return;
+        return;
       }
       const charactersURL = JSON.parse(body).characters;
-      const characterPromises = charactersURL.map(url) => {
-        return new Promise((resolve, reject)) => {
+      const characterPromises = charactersURL.map((url) => {
+        return new Promise((resolve, reject) => {
           request(url, (promiseErr, __, charactersReqBody) => {
-	    if (promiseErr) {
-	      reject(promiseErr);
-	    } else {
-	      resolve(JSON.parse(charactersReqBody).name);
-	    }
-	  });
-	});
+            if (promiseErr) {
+              reject(promiseErr);
+            } else {
+              resolve(JSON.parse(charactersReqBody).name);
+            }
+          });
+        });
       });
 
-promise.all(characterPromises)
-  .then((names) => console.log(names.join('\n')))
-  .catch((allErr) => console.error(allErr));
+      Promise.all(characterPromises)
+        .then((names) => console.log(names.join('\n')))
+        .catch((allErr) => console.error(allErr));
     });
   } catch (error) {
     console.error(error.message);
