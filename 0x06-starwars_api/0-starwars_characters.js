@@ -1,9 +1,10 @@
 #!/usr/bin/node
 // This is the url we want to request data from 
 const request = require('request');
-const API_URL request = "https://swapi-api.hbtn.io/api';
 
-async function getCharacterNames (moveId) {
+const API_URL = 'https://swapi-api.hbtn.io/api';
+
+async function getCharacterNames (movieId) {
   try {
     request(`${API_URL}/films/${movieId}/`, (err, _, body) => {
       if (err) {
