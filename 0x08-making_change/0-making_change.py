@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-""" A pile of coins of different values, determine
-the fewest number of coins needed to meet a given
-amount total """
+""" Making changes """
 
 
 def makeChange(coins, total):
-    """
-    Returns the fewest number of coins needed to meet total
+    """ Generate changes needed to reach total
+
+    Args:
+        coins ([List]): [List of Coins available]
+        total ([int]): [total amount needed]
     """
     if total <= 0:
         return 0
@@ -15,10 +16,10 @@ def makeChange(coins, total):
     coins.sort(reverse=True)
     for i in coins:
         while check < total:
-            check += 1
+            check += i
             temp += 1
         if check == total:
             return temp
-        check -= 1
+        check -= i
         temp -= 1
     return -1
